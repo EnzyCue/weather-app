@@ -6,9 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="style.css">
-    <style src="javascript.js" defer></style>
+    <script src="javascript.js" defer></script>
 </head>
 <body>
+    <form action="">
+        <label for="location"></label>
+        <input type="text" id="location" required>
+        <button type="button">Go</button>
+    </form>
+    
+    <h1></h1>
+    <div class="temp-display temp" ></div><div class="temp-display">°C</div>
+
+    <div class="feelsLike-display"> 
+        <div class="feelsLike-prefix">Feels Like: </div>
+        <div class="feelsLike"></div>
+        <div class="feelsLike-suffix"> °C</div>
+    </div>
+
+
+    <div class="humidity-display"> 
+        <div class="humidity-prefix">Humidity: </div>
+        <div class="humidity"></div>
+        <div class="humidity-suffix"> %</div>
+    </div>
+
     
 </body>
 </html>
