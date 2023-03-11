@@ -3,8 +3,7 @@ async function getWeatherDataJSON(location){
     try {
         
         const response = await fetch('http://api.openweathermap.org/data/2.5/weather?q=' + location + '&APPID=17449172071339b4b837b4f0e11e55de', {mode: 'cors'});
-        const JSONData = await response.json();
-        return JSONData;
+        return response;
         
     } catch(error){
         console.log(error);
@@ -52,7 +51,15 @@ function setupLocationInput(){
 
 
 function updateWeatherDisplay(location){
-    getWeatherDataJSON(location).then(JSON => extractWeatherData(JSON))
+    getWeatherDataJSON(location).then(response => {
+
+        if (response.status === 200) {
+            return response.json();
+        } else {
+            alert('Invalid Location');
+        }
+    })
+    .then(JSON => extractWeatherData(JSON))
     .then(weatherData => {
 
         console.log(weatherData);
@@ -64,14 +71,17 @@ function updateWeatherDisplay(location){
 
 function displayWeather(weatherObject){
     const tempDisplay = document.querySelector('.temp');
+
+
     const feelsLikeDisplay = document.querySelector('.feelsLike');
     const humidityDisplay = document.querySelector('.humidity');
     const location = document.querySelector('.city');
+
   
 
     location.textContent = weatherObject.location;
-    tempDisplay.textContent = weatherObject.temp;
-    feelsLikeDisplay.textContent = weatherObject.feelsLike;
+    tempDisplay.textContent = Math.round(weatherObject.temp - 273.15);
+    feelsLikeDisplay.textContent = Math.round(weatherObject.feelsLike - 273.15);
     humidityDisplay.textContent = weatherObject.humidity;
 }
 
