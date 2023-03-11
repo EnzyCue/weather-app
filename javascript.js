@@ -31,17 +31,20 @@ function setupLocationInput(){
     const form = document.querySelector('form');
 
     const locationInput = document.querySelector('input');
-    const location = locationInput.value;
+    
     const button = document.querySelector('button');
 
 
     button.addEventListener('click',  () => {
+        const location = locationInput.value;
         console.log(location);
         updateWeatherDisplay(location);
     })
 
     form.addEventListener('submit', event => {
         event.preventDefault();
+
+        const location = locationInput.value;
         console.log(location);
         updateWeatherDisplay(location);
     });
@@ -60,10 +63,10 @@ function updateWeatherDisplay(location){
 
 
 function displayWeather(weatherObject){
-    const tempDisplay = document.querySelector('.temp-display');
+    const tempDisplay = document.querySelector('.temp');
     const feelsLikeDisplay = document.querySelector('.feelsLike');
     const humidityDisplay = document.querySelector('.humidity');
-    const location = document.querySelector('h1');
+    const location = document.querySelector('.city');
   
 
     location.textContent = weatherObject.location;
